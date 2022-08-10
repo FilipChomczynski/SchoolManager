@@ -1,5 +1,6 @@
 from school_manager import db
 
+
 class Student(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(40), unique=False, nullable=False)
@@ -12,6 +13,7 @@ class Student(db.Model):
     def __repr__(self):
         return '<Student %r>' % self.surname
 
+
 class Grade(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     grade = db.Column(db.Integer, unique=False, nullable=False)
@@ -21,6 +23,7 @@ class Grade(db.Model):
 
     def __repr__(self):
         return '<Grade %r>' % self.grade
+
 
 class Teacher(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -34,6 +37,7 @@ class Teacher(db.Model):
 
     def __repr__(self):
         return '<Teacher %r>' % self.surname
+
 
 class School(db.Model):
     id = db.Column(db.Integer, primary_key=True)

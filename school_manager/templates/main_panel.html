@@ -23,7 +23,47 @@
             <tr>
                 <td>{{loop.index}}</td>
                 <td><a href="/class/{{class.id}}">{{class.name}}</a></td>
-                <td><a href="/teacher/{{teachers[loop.index0]}}">{{teachers[loop.index0]}}</a></td>
+                <td><a href="/teacher/{{teachers[loop.index0].id}}">{{teachers[loop.index0].name}} {{teachers[loop.index0].surname}}</a></td>
+            </tr>
+            {% endfor %}
+    </table>
+    <hr>
+
+    <table>
+        <caption><h4>Students</h4></caption>
+            <tr>
+                <th>NO.</th>
+                <th>Name</th>
+                <th>Birth date</th>
+                <th>Address</th>
+            </tr>
+            {% for student in students %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td><a href="/student/{{student.id}}">{{student.name}} {{student.surname}}</a></td>
+                <td>{{student.birth_date}}</td>
+                <td>{{student.address}}</td>
+            </tr>
+            {% endfor %}
+    </table>
+    <hr>
+
+    <table>
+        <caption><h4>Teachers</h4></caption>
+            <tr>
+                <th>NO.</th>
+                <th>Name</th>
+                <th>Birth date</th>
+                <th>Address</th>
+                <th>Salary</th>
+            </tr>
+            {% for teacher in teachers %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td><a href="/teacher/{{teacher.id}}">{{teacher.name}} {{teacher.surname}}</a></td>
+                <td>{{teacher.birth_date}}</td>
+                <td>{{teacher.address}}</td>
+                <td>{{teacher.salary}}</td>
             </tr>
             {% endfor %}
     </table>

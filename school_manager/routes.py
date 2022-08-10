@@ -57,13 +57,10 @@ def main_panel():
         return redirect('/')
 
     classes = Class_.query.filter_by(school=session['id']).all()
-    teachers_ids = [x.supervising_teacher for x in classes]
-    teachers = list()
-    for teacher in teachers_ids:
-        teacher_obj = Teacher.query.filter_by(id=teacher).first()
-        teachers.append(f"{teacher_obj.name} {teacher_obj.surname}")
+    students = Student.query.filter_by(school=session['id']).all()
+    teachers = Teacher.query.filter_by(school=session['id']).all()
 
-    return render_template('main_panel.html', classes=classes, teachers=teachers)
+    return render_template('main_panel.html', classes=classes, teachers=teachers, students=students)
 
 
 @app.route('/create-teacher', methods=['GET', 'POST'])
@@ -138,11 +135,11 @@ def create_student():
     return render_template('create/create_student.html', form=form)
 
 
-@app.route('/teacher/<name>', methods=['GET', 'POST'])
-def teacher_profile(name):
+@app.route('/teacher/<id>', methods=['GET', 'POST'])
+def teacher_profile(id):
     try:
         var = session['password']
-        teacher = Teacher.query.filter_by(name=name.split()[0], surname=name.split()[-1], school=session['id']).first()
+        teacher = Teacher.query.filter_by(id=id).first()
     except KeyError:
         return redirect('/')
 
@@ -159,7 +156,7 @@ def teacher_profile(name):
         return redirect('/main-panel')
     return render_template('profiles/teacher_profile.html', teacher=teacher, form=form)
 
-# TODO finish function
+
 @app.route('/student/<id>', methods=['GET', 'POST'])
 def student_profile(id):
     try:
