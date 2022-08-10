@@ -1,7 +1,7 @@
 from school_manager import app, db
 from flask import render_template, request, redirect, session, url_for
 from school_manager.models import School, Teacher, Class_, Student
-from school_manager.forms import RegistrationForm, CreateTeacherForm, CreateClassForm, CreateStudentForm
+from school_manager.forms import RegistrationForm, CreateTeacherForm, CreateClassForm, CreateStudentForm, LoginForm
 
 
 def make_teacher_list():
@@ -11,6 +11,7 @@ def make_teacher_list():
         teachers.append(f"{teacher.name} {teacher.surname} | {teacher.id}")
     return teachers
 
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -18,13 +19,14 @@ def home():
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
-    form = RegistrationForm(request.form)
-    if request.method == 'POST':
+    form = LoginForm(request.form)
+    if request.method == 'POST' and form.validate():
         if School.query.filter_by(password=form.password.data).first() is not None:
             session['password'] = form.password.data
             session['id'] = School.query.filter_by(password=form.password.data).first().id
             print(session['id'])
             return redirect(url_for('main_panel'))
+    print(form.errors)
     return render_template("login.html", form=form)
 
 

@@ -9,6 +9,6 @@
 - [flask](https://flask.palletsprojects.com/en/2.2.x/)
 - [milligram](https://milligram.io/)
 
-#### Version: 1.0.0
+#### Version: 1.1.0
 
 ### made by Filip Chomczyński
