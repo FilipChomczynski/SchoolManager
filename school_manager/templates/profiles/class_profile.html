@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+    {% block title %}Class {{ class_.name }}{% endblock %}
+    {% block body %}
+    <h1>{{ class_.name }}</h1>
+    <hr>
+
+    <form action="/class/{{class_.id}}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <label>Name:</label>
+                {{form.name(value=class_.name)}}
+            </div>
+            <div>
+            <label>Supervising teacher:</label>
+                {{form.supervising_teacher}}
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" value="Save">
+            </div>
+        </fieldset>
+    </form>
+    <hr>
+    <table>
+        <caption><h4>Students</h4></caption>
+            <tr>
+                <th>NO.</th>
+                <th>Name</th>
+                <th>Birth date</th>
+                <th>Address</th>
+            </tr>
+            {% for student in students %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td><a href="/student/{{student.id}}">{{student.name}} {{student.surname}}</a></td>
+                <td>{{student.birth_date}}</td>
+                <td>{{student.address}}</td>
+            </tr>
+            {% endfor %}
+    </table>
+    {% endblock %}

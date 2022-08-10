@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+    {% block title %}Create School{% endblock %}
+    {% block body %}
+        <h1 class="">Create School</h1>
+        <hr>
+
+        <form action="{{ url_for('create_account') }}" method="post">
+            <fieldset>
+                <div class="form-group">
+                    <label>Name: </label>
+                    {{form.name}}
+                </div>
+                <div class="form-group">
+                    <label>Address: </label>
+                    {{form.address}}
+                </div>
+                <div class="form-group">
+                    <label>Password: </label>
+                    {{form.password}}
+                </div>
+                <div class="form-group">
+                    <label>Repeat Password: </label>
+                    {{form.confirm}}
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create Account" class="btn btn-default">
+                </div>
+                <div class="form-group">
+                    <ul class=errors>
+                        {% for error in form.errors %}
+                            <li>Error in: {{ error }}</li>
+                        {% endfor %}
+                    </ul>
+                    <p>{{msg}}</p>
+                </div>
+            </fieldset>
+        </form>
+    {% endblock %}

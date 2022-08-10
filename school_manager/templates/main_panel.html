@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+    {% block title %}Main Panel{% endblock %}
+    {% block body %}
+    <div class="row mt-4">
+        <div class="column column-80"><h1>Main panel</h1></div>
+        <div class="column"><a href="{{ url_for('logout') }}" class="button button-clear"><h3>Logout</h3></a></div>
+    </div>
+
+    <hr>
+    <h3>Create: </h3>
+    <a href="{{url_for('create_class')}}" class="button button-outline">class</a>
+    <a href="{{url_for('create_student')}}" class="button button-outline">student</a>
+    <a href="{{url_for('create_teacher')}}" class="button button-outline">teacher</a>
+    <hr>
+    <table>
+        <caption><h4>Classes</h4></caption>
+            <tr>
+                <th>NO.</th>
+                <th>Name</th>
+                <th>Supervising teacher</th>
+            </tr>
+            {% for class in classes %}
+            <tr>
+                <td>{{loop.index}}</td>
+                <td><a href="/class/{{class.id}}">{{class.name}}</a></td>
+                <td><a href="/teacher/{{teachers[loop.index0]}}">{{teachers[loop.index0]}}</a></td>
+            </tr>
+            {% endfor %}
+    </table>
+    {% endblock %}

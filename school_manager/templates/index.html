@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+    {% block title %}Home{% endblock %}
+
+    {% block body %}
+        <h1>School Manager</h1>
+        <hr>
+        <h4>Open source app that allows you to manage school with different tools like:</h4>
+        <ul>
+            <li>classes,</li>
+            <li>students profile,</li>
+            <li>teachers profile,</li>
+            <li>grades.</li>
+
+        </ul>
+        <hr>
+        <h5>Create account for free <a href="{{ url_for('create_account') }}">here</a>.</h5>
+        <h5>Or login <a href="{{ url_for('login') }}">here</a>.</h5>
+        <hr>
+        <h5>Creators:</h5>
+        <div class="terminal-nav">
+            <ul>
+                <li><a href="">Filip Chomczyński</a></li>
+            </ul>
+        </div>
+        <hr>
+        <p>Source: <a href="">GitHub</a></p>
+
+    {% endblock %}

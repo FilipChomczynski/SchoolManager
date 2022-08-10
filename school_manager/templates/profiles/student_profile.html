@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+    {% block title %}Student {{student.name}}{% endblock %}
+    {% block body %}
+    <h1>{{ student.name }}</h1>
+    <hr>
+
+    <form action="/student/{{student.id}}" method="post">
+        <fieldset>
+            <div class="form-group">
+                <label>Name:</label>
+                {{form.name(value=student.name)}}
+            </div>
+            <div>
+            <label>Surname:</label>
+                {{form.surname(value=student.surname)}}
+            </div>
+            <div class="form-group">
+                <label>Birth date:</label>
+                {{form.birth_date(value=student.birth_date)}}
+            </div>
+            <div class="form-group">
+                <label>Address:</label>
+                {{form.address(value=student.address)}}
+            </div>
+            <div class="form-group">
+                <label>Class:</label>
+                {{form.class_(value=student.class_)}}
+            </div>
+            <div class="form-group">
+                <input type="submit" class="btn btn-default" value="Save">
+            </div>
+        </fieldset>
+    </form>
+    {% endblock %}
