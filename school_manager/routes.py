@@ -203,6 +203,23 @@ def class_profile(id):
     return render_template('/profiles/class_profile.html', class_=class_, form=form, students=students)
 
 
+@app.route('/delete/<type>/<id>')
+def delete(type, id):
+    if type == "class":
+        record_to_delete = Class_.query.filter_by(id=id).first()
+    elif type == "teacher":
+        record_to_delete = Teacher.query.filter_by(id=id).first()
+    elif type == "student":
+        record_to_delete = Student.query.filter_by(id=id).first()
+    else:
+        return redirect('/main-panel')
+
+    db.session.delete(record_to_delete)
+    db.session.commit()
+
+    return redirect('/main-panel')
+
+
 @app.route('/logout')
 def logout():
     session.clear()

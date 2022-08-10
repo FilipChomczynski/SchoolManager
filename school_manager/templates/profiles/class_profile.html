@@ -2,6 +2,7 @@
     {% block title %}Class {{ class_.name }}{% endblock %}
     {% block body %}
     <h1>{{ class_.name }}</h1>
+    <a href="/delete/class/{{class_.id}}">Delete</a>
     <hr>
 
     <form action="/class/{{class_.id}}" method="post">
