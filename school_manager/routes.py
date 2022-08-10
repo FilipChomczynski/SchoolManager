@@ -1,7 +1,12 @@
 from school_manager import app, db
 from flask import render_template, request, redirect, session, url_for
 from school_manager.models import School, Teacher, Class_, Student
-from school_manager.forms import RegistrationForm, CreateTeacherForm, CreateClassForm, CreateStudentForm, LoginForm
+from school_manager.forms import (
+    RegistrationForm,
+    CreateTeacherForm,
+    CreateClassForm,
+    CreateStudentForm,
+    LoginForm)
 
 
 def make_teacher_list():
@@ -24,9 +29,8 @@ def login():
         if School.query.filter_by(password=form.password.data).first() is not None:
             session['password'] = form.password.data
             session['id'] = School.query.filter_by(password=form.password.data).first().id
-            print(session['id'])
+
             return redirect(url_for('main_panel'))
-    print(form.errors)
     return render_template("login.html", form=form)
 
 
@@ -42,10 +46,8 @@ def create_account():
             db.session.commit()
             session['password'] = form.password.data
             session['id'] = School.query.filter_by(password=form.password.data).first().id
-            print(session['id'])
             return redirect(url_for('main_panel'))
         except Exception as e:
-            print(e)
             return render_template('create_account.html', msg="School with this name already exist.", form=form)
 
     return render_template("create_account.html", form=form)
