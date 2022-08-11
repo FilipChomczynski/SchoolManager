@@ -3,7 +3,6 @@ from wtforms import Form, StringField, SelectField, PasswordField, validators, I
 
 class RegistrationForm(Form):
     name = StringField('Name', [validators.Length(min=3, max=70), validators.DataRequired()])
-    address = StringField('Address', [validators.Length(min=6, max=70), validators.DataRequired()])
     password = PasswordField('Password', [
         validators.DataRequired(),
         validators.EqualTo('confirm', message='Passwords must match'),
@@ -13,12 +12,11 @@ class RegistrationForm(Form):
 
 
 class LoginForm(Form):
-    password = PasswordField("Password", [
+    name = StringField("Name", [
         validators.DataRequired(),
-        validators.EqualTo('confirm', message='Passwords must match'),
-        validators.Length(min=8, max=30)
+        validators.Length(min=2, max=30)
     ])
-    confirm = PasswordField("Confirm", [validators.DataRequired()])
+    password = PasswordField("Password", [validators.DataRequired()])
 
 class CreateTeacherForm(Form):
     name = StringField('Name', [validators.Length(min=1, max=70), validators.DataRequired()])

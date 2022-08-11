@@ -26,11 +26,11 @@ def home():
 def login():
     form = LoginForm(request.form)
     if request.method == 'POST' and form.validate():
-        if School.query.filter_by(password=form.password.data).first() is not None:
+        if School.query.filter_by(password=form.password.data, name=form.name.data).first() is not None:
             session['password'] = form.password.data
             session['id'] = School.query.filter_by(password=form.password.data).first().id
-
             return redirect(url_for('main_panel'))
+
     return render_template("login.html", form=form)
 
 
@@ -40,7 +40,6 @@ def create_account():
     if request.method == 'POST' and form.validate():
         try:
             school = School(name=form.name.data,
-                            address=form.address.data,
                             password=form.password.data)
             db.session.add(school)
             db.session.commit()
@@ -48,6 +47,7 @@ def create_account():
             session['id'] = School.query.filter_by(password=form.password.data).first().id
             return redirect(url_for('main_panel'))
         except Exception as e:
+
             return render_template('create_account.html', msg="School with this name already exist.", form=form)
 
     return render_template("create_account.html", form=form)
@@ -209,6 +209,11 @@ def class_profile(id):
 
 @app.route('/delete/<type>/<id>')
 def delete(type, id):
+    try:
+        session['password']
+    except KeyError:
+        return redirect('/')
+    
     if type == "class":
         record_to_delete = Class_.query.filter_by(id=id).first()
     elif type == "teacher":

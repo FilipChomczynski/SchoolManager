@@ -42,7 +42,6 @@ class Teacher(db.Model):
 class School(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(70), unique=True, nullable=False)
-    address = db.Column(db.String(70), unique=False, nullable=False)
     password = db.Column(db.String(30), unique=False, nullable=False)
 
     def __repr__(self):
