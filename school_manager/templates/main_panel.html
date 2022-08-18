@@ -13,7 +13,7 @@
     <a href="{{url_for('create_teacher')}}" class="button button-outline">teacher</a>
     <hr>
     <table>
-        <caption><h4>Classes</h4></caption>
+        <caption><h3>Classes</h3></caption>
             <tr>
                 <th>NO.</th>
                 <th>Name</th>
@@ -30,7 +30,7 @@
     <hr>
 
     <table>
-        <caption><h4>Students</h4></caption>
+        <caption><h3>Students</h3></caption>
             <tr>
                 <th>NO.</th>
                 <th>Name</th>
@@ -42,14 +42,14 @@
                 <td>{{loop.index}}</td>
                 <td><a href="/student/{{student.id}}">{{student.name}} {{student.surname}}</a></td>
                 <td>{{student.birth_date}}</td>
-                <td>{{student.address}}</td>
+                <td><a href="https://www.google.pl/maps/place/{{student.address}}" target="_blank" rel="noopener noreferrer">{{student.address}}</a></td>
             </tr>
             {% endfor %}
     </table>
     <hr>
 
     <table>
-        <caption><h4>Teachers</h4></caption>
+        <caption><h3>Teachers</h3></caption>
             <tr>
                 <th>NO.</th>
                 <th>Name</th>
@@ -62,7 +62,7 @@
                 <td>{{loop.index}}</td>
                 <td><a href="/teacher/{{teacher.id}}">{{teacher.name}} {{teacher.surname}}</a></td>
                 <td>{{teacher.birth_date}}</td>
-                <td>{{teacher.address}}</td>
+                <td><a href="https://www.google.pl/maps/place/{{teacher.address}}" target="_blank" rel="noopener noreferrer">{{teacher.address}}</a></td>
                 <td>{{teacher.salary}}</td>
             </tr>
             {% endfor %}

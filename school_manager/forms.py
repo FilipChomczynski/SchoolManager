@@ -18,6 +18,7 @@ class LoginForm(Form):
     ])
     password = PasswordField("Password", [validators.DataRequired()])
 
+
 class CreateTeacherForm(Form):
     name = StringField('Name', [validators.Length(min=1, max=70), validators.DataRequired()])
     surname = StringField('Name', [validators.Length(min=1, max=70), validators.DataRequired()])

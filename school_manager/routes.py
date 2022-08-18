@@ -53,7 +53,7 @@ def create_account():
     return render_template("create_account.html", form=form)
 
 
-@app.route('/main-panel')
+@app.route('/main-panel', methods=['GET', 'POST'])
 def main_panel():
     try:
         session['password']
@@ -64,7 +64,10 @@ def main_panel():
     students = Student.query.filter_by(school=session['id']).all()
     teachers = Teacher.query.filter_by(school=session['id']).all()
 
-    return render_template('main_panel.html', classes=classes, teachers=teachers, students=students)
+    return render_template('main_panel.html',
+                           classes=classes,
+                           teachers=teachers,
+                           students=students)
 
 
 @app.route('/create-teacher', methods=['GET', 'POST'])
@@ -144,11 +147,13 @@ def teacher_profile(id):
     try:
         var = session['password']
         teacher = Teacher.query.filter_by(id=id).first()
-    except KeyError:
-        return redirect('/')
+    except Exception as e:
+        print(e)
+        return redirect('/main-panel')
 
     form = CreateTeacherForm(request.form)
     if request.method == 'POST' and form.validate():
+        print(form.name.data, teacher.name)
         teacher.name = form.name.data
         teacher.surname = form.surname.data
         teacher.birth_date = form.birth_date.data
@@ -166,7 +171,7 @@ def student_profile(id):
     try:
         var = session['password']
         student = Student.query.filter_by(id=id).first()
-    except KeyError:
+    except:
         return redirect('/')
 
     form = CreateStudentForm(request.form)
