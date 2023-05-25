@@ -1,14 +1,10 @@
 # School Manager
-#### a open-source web app made in flask for managing your school with different tools like:
-- creating classes, teachers and students
-- changing their data,
-- adding students and teachers to classes,
-- viewing data in tables.
 
-### Tools used:
-- [flask](https://flask.palletsprojects.com/en/2.2.x/)
-- [milligram](https://milligram.io/)
+## open-source web app made in flask for school managment
 
-#### Version: 1.1.0
-
-### made by Filip Chomczyński
+<p align="center">
+<img src="screenshots/Screenshot1.png" alt="drawing" width="600"/>
+</p>
+<p align="center">
+<img src="screenshots/Screenshot2.png" alt="drawing" width="600"/>
+</p>
